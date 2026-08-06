@@ -1064,3 +1064,165 @@ a {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Homepage v0.2 refinements */
+.about-panel h1 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+}
+
+.about-panel h1::after {
+  content: "";
+  display: block;
+  width: 44px;
+  height: 3px;
+  margin-top: 0.8rem;
+  background: var(--accent);
+}
+
+.about-panel p {
+  line-height: 1.62;
+}
+
+.profile-kicker strong {
+  color: var(--ink);
+  font-weight: 760;
+}
+
+.timeline::before {
+  left: 154px;
+}
+
+.timeline-item {
+  grid-template-columns: 134px minmax(0, 1fr);
+  gap: 2.55rem;
+}
+
+.timeline-item::before {
+  left: 148px;
+}
+
+.timeline-date {
+  line-height: 1.45;
+}
+
+.entry-with-logo {
+  display: grid;
+  grid-template-columns: 62px minmax(0, 1fr);
+  gap: 1.05rem;
+  align-items: start;
+}
+
+.institution-logo-wrap {
+  width: 58px;
+  height: 58px;
+  display: grid;
+  place-items: center;
+  padding: 7px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.institution-logo {
+  width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.logo-mst {
+  max-width: 48px;
+}
+
+.logo-uci {
+  max-width: 48px;
+}
+
+.logo-ge {
+  max-width: 46px;
+  border-radius: 50%;
+}
+
+.entry-copy {
+  min-width: 0;
+}
+
+.entry-title-row {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 0.55rem 0.75rem;
+}
+
+.entry-title-row h3 {
+  flex: 1 1 360px;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 25px;
+  padding: 0.15rem 0.55rem;
+  color: #315b48;
+  background: #edf6f1;
+  border: 1px solid #cfe4d8;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 760;
+  white-space: nowrap;
+}
+
+.timeline-body .entry-meta,
+.timeline-body .advisor {
+  margin: 0.22rem 0 0;
+  color: #6a747d;
+  font-size: 0.88rem;
+}
+
+.timeline-body .advisor {
+  margin-top: 0.62rem;
+  color: #3f4952;
+}
+
+.timeline-body .details {
+  margin-top: 0.62rem;
+  color: #505b65;
+  font-size: 0.94rem;
+  line-height: 1.6;
+}
+
+.timeline-body .details + .details {
+  margin-top: 0.8rem;
+}
+
+@media (max-width: 760px) {
+  .about-panel h1 {
+    font-size: 2rem;
+  }
+
+  .timeline::before {
+    left: 7px;
+  }
+
+  .timeline-item {
+    display: block;
+    padding-left: 34px;
+  }
+
+  .timeline-item::before {
+    left: 1px;
+  }
+
+  .entry-with-logo {
+    grid-template-columns: 52px minmax(0, 1fr);
+    gap: 0.85rem;
+  }
+
+  .institution-logo-wrap {
+    width: 50px;
+    height: 50px;
+    padding: 6px;
+  }
+}
