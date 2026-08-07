@@ -1360,30 +1360,29 @@ a {
 }
 
 .timeline {
-  --timeline-date-col: 154px;
-  --timeline-logo-slot: 106px;
-  --timeline-logo-size: 82px;
+  --timeline-date-col: 144px;
+  --timeline-logo-size: 80px;
   --timeline-rail-col: 24px;
-  --timeline-col-gap: 1rem;
+  --timeline-col-gap: 0.8rem;
   --timeline-circle-size: 17px;
   position: relative;
 }
 
 .timeline::before {
-  left: calc(var(--timeline-date-col) + var(--timeline-col-gap) + var(--timeline-logo-slot) + var(--timeline-col-gap) + (var(--timeline-rail-col) / 2));
+  left: calc(var(--timeline-date-col) + var(--timeline-col-gap) + (var(--timeline-rail-col) / 2));
   width: 2px;
   transform: translateX(-50%);
 }
 
 .timeline-item {
   display: grid;
-  grid-template-columns: var(--timeline-date-col) var(--timeline-logo-slot) var(--timeline-rail-col) minmax(0, 1fr);
+  grid-template-columns: var(--timeline-date-col) var(--timeline-rail-col) minmax(0, 1fr);
   gap: 0 var(--timeline-col-gap);
   align-items: start;
 }
 
 .timeline-item::before {
-  left: calc(var(--timeline-date-col) + var(--timeline-col-gap) + var(--timeline-logo-slot) + var(--timeline-col-gap) + (var(--timeline-rail-col) / 2));
+  left: calc(var(--timeline-date-col) + var(--timeline-col-gap) + (var(--timeline-rail-col) / 2));
   width: var(--timeline-circle-size);
   height: var(--timeline-circle-size);
   box-sizing: border-box;
@@ -1391,17 +1390,22 @@ a {
 }
 
 .timeline-aside {
-  display: contents;
+  grid-column: 1;
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  gap: 0.72rem;
 }
 
 .timeline-date {
   grid-column: 1;
   padding-top: 0.05rem;
+  text-align: center;
   white-space: nowrap;
 }
 
 .institution-logo-wrap {
-  grid-column: 2;
+  grid-column: 1;
   justify-self: center;
   width: var(--timeline-logo-size);
   height: var(--timeline-logo-size);
@@ -1416,7 +1420,7 @@ a {
 }
 
 .timeline-body {
-  grid-column: 4;
+  grid-column: 3;
   padding-left: 0;
 }
 
@@ -1443,49 +1447,53 @@ a {
 
 @media (max-width: 760px) {
   .timeline {
-    --timeline-date-col: 0px;
-    --timeline-logo-slot: 62px;
-    --timeline-logo-size: 58px;
+    --timeline-date-col: 132px;
+    --timeline-logo-size: 76px;
     --timeline-rail-col: 18px;
-    --timeline-col-gap: 0.75rem;
+    --timeline-col-gap: 0.65rem;
   }
 
   .timeline::before {
-    left: calc(var(--timeline-rail-col) / 2);
+    left: calc(var(--timeline-date-col) + var(--timeline-col-gap) + (var(--timeline-rail-col) / 2));
   }
 
   .timeline-item {
-    grid-template-columns: var(--timeline-rail-col) var(--timeline-logo-slot) minmax(0, 1fr);
-    gap: 0 0.8rem;
+    grid-template-columns: var(--timeline-date-col) var(--timeline-rail-col) minmax(0, 1fr);
+    gap: 0 var(--timeline-col-gap);
     padding-left: 0;
   }
 
   .timeline-item::before {
-    left: calc(var(--timeline-rail-col) / 2);
+    left: calc(var(--timeline-date-col) + var(--timeline-col-gap) + (var(--timeline-rail-col) / 2));
+  }
+
+  .timeline-aside {
+    grid-column: 1;
+    gap: 0.58rem;
   }
 
   .timeline-date {
-    grid-column: 3;
+    grid-column: 1;
     grid-row: 1;
-    margin-bottom: 0.45rem;
+    margin-bottom: 0;
   }
 
   .institution-logo-wrap {
-    grid-column: 2;
-    grid-row: 1;
+    grid-column: 1;
+    grid-row: 2;
     width: var(--timeline-logo-size);
     height: var(--timeline-logo-size);
   }
 
   .timeline-body {
     grid-column: 3;
-    grid-row: 2;
+    grid-row: 1;
     padding-left: 0;
   }
 
   .logo-ge {
-    max-width: 54px;
-    max-height: 54px;
+    max-width: 72px;
+    max-height: 72px;
     padding: 2px;
   }
 }
