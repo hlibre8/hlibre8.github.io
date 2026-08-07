@@ -2,18 +2,25 @@
   const header = document.querySelector('.site-header');
   const heroStage = document.querySelector('.hero-stage');
   const aboutPanel = document.querySelector('.about-panel');
+  const scrollCue = document.querySelector('.scroll-cue');
   const menuButton = document.querySelector('.menu-button');
   const nav = document.querySelector('.primary-nav');
 
   const updateScrollState = () => {
+    const hasScrolled = window.scrollY > 64;
+
     if (header && !header.classList.contains('always-solid')) {
-      header.classList.toggle('is-solid', window.scrollY > 48);
+      header.classList.remove('is-solid');
+      header.classList.toggle('is-scrolled', hasScrolled);
     }
 
     if (heroStage && aboutPanel) {
-      const start = Math.max(70, window.innerHeight * 0.08);
-      const shouldShow = window.scrollY > start || window.location.hash === '#about';
+      const shouldShow = window.scrollY < heroStage.offsetHeight || window.location.hash === '#about';
       aboutPanel.classList.toggle('is-visible', shouldShow);
+    }
+
+    if (scrollCue) {
+      scrollCue.classList.toggle('is-hidden', hasScrolled);
     }
   };
 
