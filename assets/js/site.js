@@ -8,10 +8,12 @@
 
   const updateScrollState = () => {
     const hasScrolled = window.scrollY > 64;
+    const headerHeight = header ? header.offsetHeight : 0;
+    const inWhiteContent = heroStage ? window.scrollY >= heroStage.offsetHeight - headerHeight : hasScrolled;
 
     if (header && !header.classList.contains('always-solid')) {
       header.classList.remove('is-solid');
-      header.classList.toggle('is-scrolled', hasScrolled);
+      header.classList.toggle('is-scrolled', inWhiteContent);
     }
 
     if (heroStage && aboutPanel) {
