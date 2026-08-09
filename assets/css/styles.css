@@ -215,13 +215,13 @@ a {
 .page-masthead-photo {
   position: absolute;
   inset: 0;
-  background-image: url("../images/hero-lab.jpg");
-  background-repeat: no-repeat;
-  background-position: center 46%;
-  background-size: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .hero-photo {
+  object-position: 50% center;
   transform: scale(1.01);
 }
 
@@ -229,9 +229,9 @@ a {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 77% 44%, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.56) 68%),
-    linear-gradient(90deg, rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.05) 48%, rgba(0, 0, 0, 0.68) 100%),
-    linear-gradient(180deg, rgba(0, 0, 0, 0.34) 0%, transparent 30%, rgba(0, 0, 0, 0.4) 100%);
+    radial-gradient(circle at 78% 44%, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4) 70%),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.03) 48%, rgba(0, 0, 0, 0.52) 100%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.26) 0%, transparent 32%, rgba(0, 0, 0, 0.26) 100%);
 }
 
 .hero-wordmark {
@@ -777,16 +777,16 @@ a {
 }
 
 .page-masthead-photo {
-  opacity: 0.48;
-  background-position: center 40%;
-  filter: saturate(0.85);
+  opacity: 0.88;
+  object-position: 38% 40%;
+  filter: saturate(1.04);
 }
 
 .page-masthead::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgba(4, 9, 15, 0.88), rgba(4, 9, 15, 0.42) 60%, rgba(4, 9, 15, 0.7));
+  background: linear-gradient(90deg, rgba(4, 9, 15, 0.62), rgba(4, 9, 15, 0.22) 60%, rgba(4, 9, 15, 0.5));
 }
 
 .page-masthead-content {
@@ -1041,13 +1041,13 @@ a {
   }
 
   .hero-photo {
-    background-position: 42% center;
+    object-position: 50% center;
   }
 
   .hero-shade {
     background:
-      linear-gradient(180deg, rgba(0, 0, 0, 0.24), rgba(0, 0, 0, 0.18) 40%, rgba(0, 0, 0, 0.8) 100%),
-      linear-gradient(90deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.36));
+      linear-gradient(180deg, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.12) 40%, rgba(0, 0, 0, 0.56) 100%),
+      linear-gradient(90deg, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.24));
   }
 
   .about-panel {
@@ -1140,7 +1140,7 @@ a {
   }
 
   .page-masthead-photo {
-    background-position: 42% center;
+    object-position: 22% 48%;
   }
 
   .page-lead {
