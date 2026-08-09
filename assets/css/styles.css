@@ -1024,6 +1024,15 @@ a {
   text-align: center;
 }
 
+.contact-email-line {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(1.06rem, 1.3vw, 1.12rem);
+  font-weight: 400;
+  line-height: 1.45;
+  letter-spacing: 0;
+}
+
 .contact-info-list a {
   color: #0645ad;
   font-size: clamp(1.06rem, 1.3vw, 1.12rem);
@@ -1626,6 +1635,10 @@ a {
   }
 
   .contact-info-list a {
+    font-size: 0.98rem;
+  }
+
+  .contact-email-line {
     font-size: 0.98rem;
   }
 }
