@@ -12,7 +12,7 @@ window.NEWS_ITEMS = [
   {
     date: "2026-07-17",
     title: "Participated in the BioPACIFIC MIP Summer School at UCLA",
-    description: "Took part in the NSF BioPACIFIC Materials Innovation Platform Summer School at UCLA and received training in MicroED and 4D-STEM.",
+    description: "Received training in MicroED and 4D-STEM from ULCA faculty and researchers.",
     image: "assets/images/IMG_2192.PNG",
     imageAlt: "Participants in the 2026 BioPACIFIC MIP Summer School at UCLA.",
     caption: "2026 BioPACIFIC MIP Summer School cohort at UCLA.",
@@ -30,7 +30,7 @@ window.NEWS_ITEMS = [
   {
     date: "2026-06-19",
     title: "Received an ACerS European Summer School Travel Grant",
-    description: "Received $1,500 in travel support to attend the Shaping 10 Summer School and Conference in Padova, Italy.",
+    description: "The $1,500 award supported travel to the Shaping 10 Summer School and Conference in Padova, Italy.",
     image: "",
     imageAlt: "",
     caption: "",
@@ -39,7 +39,7 @@ window.NEWS_ITEMS = [
   {
     date: "2026-05-17",
     title: "Participated in DAISE at Carnegie Mellon University",
-    description: "Participated in the Data Analytics for Science Immersion Experience at Carnegie Mellon University, a program focused on using data analytics in scientific research.",
+    description: "Data Analytics for Science Immersion Experience at Carnegie Mellon University.",
     image: "",
     imageAlt: "",
     caption: "",
@@ -57,7 +57,7 @@ window.NEWS_ITEMS = [
   {
     date: "2026-03-18",
     title: "Won first place in the TMS 2026 Undergraduate Poster Competition",
-    description: "Received first place in the Structural Materials Division for the poster “Enabling High-Temperature Hypersonic Aerospace Materials: PyC Fiber Interphases in Ceramic Matrix Composites (CMCs).”",
+    description: "The winning poster in the Structural Materials Division examined PyC fiber interphases in ceramic matrix composites for high-temperature hypersonic applications.",
     image: "assets/images/1773854712591.jpeg",
     imageAlt: "Hossein Libre standing beside his undergraduate research poster at TMS 2026.",
     caption: "Hossein Libre alongside his TMS 2026 poster.",
@@ -66,7 +66,7 @@ window.NEWS_ITEMS = [
   {
     date: "2026-03-13",
     title: "Presented at the University of Missouri Undergraduate Research Day at the Capitol",
-    description: "Presented undergraduate research at the Missouri State Capitol and received resolutions from the Missouri Senate and House of Representatives recognizing undergraduate research excellence.",
+    description: "Presented hypersonic materials research at the Missouri State Capitol and received resolutions from the Missouri Senate and House of Representatives recognizing undergraduate research excellence.",
     image: "assets/images/1773792107140.jpeg",
     imageAlt: "Missouri State Representative Tara Peters presenting Hossein Libre with a resolution.",
     caption: "Missouri State Representative Tara Peters presenting Hossein Libre with a Missouri House of Representatives resolution.",
@@ -75,7 +75,7 @@ window.NEWS_ITEMS = [
   {
     date: "2025-10-31",
     title: "Participated in the ACerS PCSA Annual Business Meeting and MS&T25",
-    description: "Attended the 2025 President’s Council of Student Advisors Annual Business Meeting and competed in the MS&T25 Undergraduate Speaking Contest.",
+    description: "",
     image: "assets/images/Complete-delegation-1200x800.jpg",
     imageAlt: "Members of the 2025 ACerS President’s Council of Student Advisors delegation.",
     caption: "2025 ACerS PCSA delegation.",
@@ -84,7 +84,7 @@ window.NEWS_ITEMS = [
   {
     date: "2025-10-18",
     title: "Presented at Rice University’s Gulf Coast Undergraduate Research Symposium",
-    description: "Presented research from the UCI REU program at the 2025 Gulf Coast Undergraduate Research Symposium hosted by Rice University.",
+    description: "Shared research completed during the UCI REU with the Materials and Nanoscience Division at Rice University.",
     image: "assets/images/RedLens_313-971-8022_-68163.jpg",
     imageAlt: "Hossein Libre presenting at Rice University’s Gulf Coast Undergraduate Research Symposium.",
     caption: "GCURS Materials and Nanoscience Division.",
@@ -93,7 +93,7 @@ window.NEWS_ITEMS = [
   {
     date: "2025-10-13",
     title: "Featured among Kummer Vanguard Scholars student leaders",
-    description: "Featured in a Missouri S&T story highlighting student leadership within the Kummer Vanguard Scholars program.",
+    description: "https://news.mst.edu/featured/steering-success-meet-the-student-leaders-of-kummer-vanguard-scholars/",
     image: "assets/images/20251001-KVS-Steering-Committee-MP-25-2.jpg",
     imageAlt: "Members of the Kummer Vanguard Scholars Steering Committee.",
     caption: "",
