@@ -75,8 +75,13 @@ a {
   inset: 0 0 auto 0;
   height: var(--header-h);
   color: white;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.45), transparent);
+  background: transparent;
   transition: color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease, backdrop-filter 0.25s ease;
+}
+
+.site-header:not(.is-scrolled):not(.always-solid) .brand,
+.site-header:not(.is-scrolled):not(.always-solid) .primary-nav a {
+  text-shadow: 0 1px 9px rgba(0, 0, 0, 0.32);
 }
 
 .site-header.is-scrolled {
@@ -221,17 +226,7 @@ a {
 }
 
 .hero-photo {
-  object-position: 50% center;
-  transform: scale(1.01);
-}
-
-.hero-shade {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 78% 44%, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4) 70%),
-    linear-gradient(90deg, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.03) 48%, rgba(0, 0, 0, 0.52) 100%),
-    linear-gradient(180deg, rgba(0, 0, 0, 0.26) 0%, transparent 32%, rgba(0, 0, 0, 0.26) 100%);
+  object-position: center top;
 }
 
 .hero-wordmark {
@@ -263,9 +258,9 @@ a {
 
 .about-panel {
   position: absolute;
-  top: 18%;
-  right: max(28px, calc((100vw - var(--max)) / 2));
-  width: min(510px, calc(100vw - 56px));
+  top: clamp(104px, 20vh, 180px);
+  right: clamp(32px, 6vw, 116px);
+  width: min(560px, calc(100vw - 64px));
   padding: clamp(1.45rem, 2.7vw, 2.25rem);
   color: white;
   background: rgba(5, 18, 27, 0.78);
@@ -1031,6 +1026,10 @@ a {
     background: var(--paper-soft);
   }
 
+  .site-header .primary-nav a {
+    text-shadow: none;
+  }
+
   .hero-stage {
     height: 96svh;
   }
@@ -1041,13 +1040,7 @@ a {
   }
 
   .hero-photo {
-    object-position: 50% center;
-  }
-
-  .hero-shade {
-    background:
-      linear-gradient(180deg, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.12) 40%, rgba(0, 0, 0, 0.56) 100%),
-      linear-gradient(90deg, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.24));
+    object-position: center top;
   }
 
   .about-panel {
@@ -1360,10 +1353,10 @@ a {
 }
 
 .timeline {
-  --timeline-date-col: 144px;
-  --timeline-logo-size: 80px;
+  --timeline-date-col: 164px;
+  --timeline-logo-size: 84px;
   --timeline-rail-col: 24px;
-  --timeline-col-gap: 0.8rem;
+  --timeline-col-gap: 0.72rem;
   --timeline-circle-size: 17px;
   position: relative;
 }
@@ -1392,15 +1385,17 @@ a {
 .timeline-aside {
   grid-column: 1;
   display: grid;
-  justify-items: center;
+  justify-items: start;
   align-content: start;
-  gap: 0.72rem;
+  gap: 0.68rem;
+  width: max-content;
+  max-width: 100%;
 }
 
 .timeline-date {
   grid-column: 1;
   padding-top: 0.05rem;
-  text-align: center;
+  text-align: left;
   white-space: nowrap;
 }
 
@@ -1447,10 +1442,10 @@ a {
 
 @media (max-width: 760px) {
   .timeline {
-    --timeline-date-col: 132px;
+    --timeline-date-col: 134px;
     --timeline-logo-size: 76px;
     --timeline-rail-col: 18px;
-    --timeline-col-gap: 0.65rem;
+    --timeline-col-gap: 0.62rem;
   }
 
   .timeline::before {
