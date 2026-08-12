@@ -2,12 +2,12 @@
   Glass page gallery source list.
 
   Add a new image to assets/images/gallery/, duplicate one object below, then
-  edit image, title, date, and type. Run `python3 scripts/analyze-gallery.py`
-  afterward; the generated gallery order will update automatically.
+  edit image, title, date, and type. Commit and push; the Glass page reads this
+  file directly, so new images display without a generated metadata file.
 
   type must be either "Photography" or "Glass".
   Optional fields: location, orderOverride, colorOverride, featured, caption.
-  Location is manual only; the analyzer does not read or expose EXIF GPS data.
+  Location is manual only; EXIF GPS data is never read or exposed automatically.
 */
 window.GALLERY_SOURCE_ITEMS = [
   /*
@@ -15,10 +15,10 @@ window.GALLERY_SOURCE_ITEMS = [
   */
   {
     image: "assets/images/gallery/20240713_192630_Original.jpg",
-    title: "white sands dune national park, new mexico",
+    title: "Dune",
     date: "2024",
     type: "Photography",
-    location: "",
+    location: "White Sands National Park, New Mexico",
     orderOverride: null,
     colorOverride: null,
     featured: false
@@ -28,10 +28,10 @@ window.GALLERY_SOURCE_ITEMS = [
   */
   {
     image: "assets/images/gallery/20240722_122214_Original.jpg",
-    title: "big bend national park, texas",
+    title: "",
     date: "2024",
     type: "Photography",
-    location: "",
+    location: "Big Bend National Park, Texas",
     orderOverride: null,
     colorOverride: null,
     featured: true
@@ -41,10 +41,10 @@ window.GALLERY_SOURCE_ITEMS = [
   */
   {
     image: "assets/images/gallery/DSC02667.JPG",
-    title: "zurich, switzerland",
+    title: "",
     date: "2026",
     type: "Photography",
-    location: "",
+    location: "Zurich, Switzerland",
     orderOverride: null,
     colorOverride: null,
     featured: true
@@ -54,10 +54,10 @@ window.GALLERY_SOURCE_ITEMS = [
   */
   {
     image: "assets/images/gallery/DSC02722.JPG",
-    title: "bern, switzerland",
+    title: "",
     date: "2026",
     type: "Photography",
-    location: "",
+    location: "Bern, Switzerland",
     orderOverride: null,
     colorOverride: null,
     featured: true
@@ -67,10 +67,10 @@ window.GALLERY_SOURCE_ITEMS = [
   */
   {
     image: "assets/images/gallery/IMG_0271.jpg",
-    title: "zurich, switzerland",
+    title: "",
     date: "2026",
     type: "Photography",
-    location: "",
+    location: "University of Zurich, Zurich, Switzerland",
     orderOverride: null,
     colorOverride: null,
     featured: true
@@ -80,10 +80,10 @@ window.GALLERY_SOURCE_ITEMS = [
   */
   {
     image: "assets/images/gallery/IMG_1969.jpg",
-    title: "smokey mountains national park, tennessee",
+    title: "Foggy Treeline",
     date: "2026",
     type: "Photography",
-    location: "",
+    location: "Great Smoky Mountains National Park, Tennessee",
     orderOverride: null,
     colorOverride: null,
     featured: true
@@ -93,10 +93,10 @@ window.GALLERY_SOURCE_ITEMS = [
   */
   {
     image: "assets/images/gallery/IMG_2301.jpg",
-    title: "white sands national park, new mexico",
+    title: "Dune",
     date: "2024",
     type: "Photography",
-    location: "",
+    location: "White Sands National Park, New Mexico",
     orderOverride: null,
     colorOverride: null,
     featured: true
@@ -106,10 +106,10 @@ window.GALLERY_SOURCE_ITEMS = [
   */
   {
     image: "assets/images/gallery/IMG_8061-1152x1536.jpg",
-    title: "rolla, missouri",
+    title: "Crystals",
     date: "2024",
     type: "Photography",
-    location: "",
+    location: "Missouri S&T, Rolla, Missouri",
     orderOverride: null,
     colorOverride: null,
     featured: true
@@ -119,10 +119,10 @@ window.GALLERY_SOURCE_ITEMS = [
   */
   {
     image: "assets/images/gallery/R1-06950-005A_Original.jpg",
-    title: "osage beach, missouri",
+    title: "",
     date: "2026",
     type: "Photography",
-    location: "",
+    location: "Ha Ha Tonka State Park, Missouri",
     orderOverride: null,
     colorOverride: null,
     featured: true
@@ -132,10 +132,10 @@ window.GALLERY_SOURCE_ITEMS = [
   */
   {
     image: "assets/images/gallery/R1-06950-008A_Original.jpg",
-    title: "rolla, missouri",
+    title: "Flowers",
     date: "2026",
     type: "Photography",
-    location: "",
+    location: "Rolla, Missouri",
     orderOverride: null,
     colorOverride: null,
     featured: true
@@ -148,7 +148,7 @@ window.GALLERY_SOURCE_ITEMS = [
     title: "",
     date: "2025",
     type: "Photography",
-    location: "st.louis, missouri",
+    location: "St. Louis, Missouri",
     orderOverride: null,
     colorOverride: null,
     featured: true
@@ -161,7 +161,7 @@ window.GALLERY_SOURCE_ITEMS = [
     title: "",
     date: "2025",
     type: "Photography",
-    location: "laguna beach, california",
+    location: "Laguna Beach, California",
     orderOverride: null,
     colorOverride: null,
     featured: true
@@ -174,7 +174,7 @@ window.GALLERY_SOURCE_ITEMS = [
     title: "",
     date: "2025",
     type: "Photography",
-    location: "los angeles, california",
+    location: "Los Angeles, California",
     orderOverride: null,
     colorOverride: null,
     featured: true
@@ -187,7 +187,7 @@ window.GALLERY_SOURCE_ITEMS = [
     title: "",
     date: "2026",
     type: "Photography",
-    location: "ironton, missouri",
+    location: "Ironton, Missouri",
     orderOverride: null,
     colorOverride: null,
     featured: true
@@ -200,7 +200,7 @@ window.GALLERY_SOURCE_ITEMS = [
     title: "",
     date: "2026",
     type: "Photography",
-    location: "ironton, missouri",
+    location: "Elephant Rocks State Park, Missouri",
     orderOverride: null,
     colorOverride: null,
     featured: true

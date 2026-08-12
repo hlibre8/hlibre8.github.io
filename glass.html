@@ -9,7 +9,8 @@
   <link rel="stylesheet" href="assets/css/styles.css">
   <script>document.documentElement.classList.add('has-js');</script>
   <script defer src="assets/js/site.js"></script>
-  <script defer src="assets/js/gallery-generated.js"></script>
+  <!-- Gallery workflow: add image, add entry in gallery-data.js, commit and push. -->
+  <script defer src="assets/js/gallery-data.js"></script>
   <script defer src="assets/js/gallery.js"></script>
 </head>
 <body>
@@ -33,7 +34,7 @@
       <img class="page-masthead-photo glass-masthead-photo" src="assets/images/glass-hero.jpg" alt="Torch heating a rounded green and amber glass piece during glassblowing">
       <div class="page-masthead-content">
         <p class="eyebrow">Glass + Creative Work</p>
-        <h1>Heat, movement, light, and transformation.</h1>
+        <h1>Capturing movement in a moment.</h1>
       </div>
     </section>
 
@@ -48,7 +49,8 @@
           </div>
         </div>
         <div class="masonry-gallery" data-gallery-grid aria-live="polite"></div>
-        <p class="gallery-empty" data-gallery-empty hidden>Add images to <code>assets/images/gallery/</code>, update <code>assets/js/gallery-data.js</code>, then run <code>python3 scripts/analyze-gallery.py</code>.</p>
+        <p class="gallery-intro gallery-intro-bottom">Photographs taken with a Sony Cyber-shot, film cameras, and [THIRD CAMERA]. Glasswork made in the Missouri S&amp;T Hot Glass Shop.</p>
+        <p class="gallery-empty" data-gallery-empty hidden>Add images to <code>assets/images/gallery/</code>, then add entries to <code>assets/js/gallery-data.js</code>.</p>
       </div>
     </section>
   </main>
@@ -59,9 +61,9 @@
     <figure class="lightbox-figure">
       <img data-lightbox-image alt="">
       <figcaption>
-        <h2 data-lightbox-title></h2>
-        <p data-lightbox-meta></p>
+        <h2 data-lightbox-title hidden></h2>
         <p class="lightbox-location" data-lightbox-location hidden></p>
+        <p data-lightbox-meta></p>
         <p data-lightbox-caption hidden></p>
       </figcaption>
     </figure>

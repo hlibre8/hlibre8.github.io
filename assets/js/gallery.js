@@ -4,8 +4,7 @@
   Maintenance flow:
   1. Put a new image in assets/images/gallery/.
   2. Add its title/date/type and optional location to assets/js/gallery-data.js.
-  3. Run `python3 scripts/analyze-gallery.py`.
-  4. The generated order in assets/js/gallery-generated.js drives this page.
+  3. Commit and push. This page reads gallery-data.js directly.
 */
 (() => {
   const grid = document.querySelector('[data-gallery-grid]');
@@ -14,11 +13,30 @@
   const lightbox = document.querySelector('[data-gallery-lightbox]');
   if (!grid || !lightbox) return;
 
-  const items = Array.isArray(window.GALLERY_ITEMS) ? window.GALLERY_ITEMS.slice() : [];
-  const byOrder = items.sort((a, b) => (a.order || 0) - (b.order || 0));
+  const hasOrderOverride = (item) => item.orderOverride !== null
+    && item.orderOverride !== undefined
+    && item.orderOverride !== ''
+    && Number.isFinite(Number(item.orderOverride));
+
+  const items = Array.isArray(window.GALLERY_SOURCE_ITEMS)
+    ? window.GALLERY_SOURCE_ITEMS.map((item, index) => ({ ...item, sourceIndex: index }))
+    : [];
+  const byOrder = items.sort((a, b) => {
+    const aHasOverride = hasOrderOverride(a);
+    const bHasOverride = hasOrderOverride(b);
+
+    if (aHasOverride || bHasOverride) {
+      const aOrder = aHasOverride ? Number(a.orderOverride) : a.sourceIndex;
+      const bOrder = bHasOverride ? Number(b.orderOverride) : b.sourceIndex;
+      if (aOrder !== bOrder) return aOrder - bOrder;
+    }
+
+    return a.sourceIndex - b.sourceIndex;
+  });
   let activeFilter = 'All';
   let visibleItems = byOrder.slice();
   let activeIndex = -1;
+  let renderFrame = 0;
 
   const lightboxImage = lightbox.querySelector('[data-lightbox-image]');
   const lightboxTitle = lightbox.querySelector('[data-lightbox-title]');
@@ -29,19 +47,36 @@
   const prevButton = lightbox.querySelector('[data-lightbox-prev]');
   const nextButton = lightbox.querySelector('[data-lightbox-next]');
 
-  const layoutItem = (item) => {
-    const image = item.querySelector('img');
-    if (!image || !image.naturalWidth) return;
-    const style = getComputedStyle(grid);
-    const rowHeight = parseFloat(style.gridAutoRows) || 8;
-    const gap = parseFloat(style.rowGap) || 16;
-    const height = image.naturalHeight * (item.getBoundingClientRect().width / image.naturalWidth);
-    const span = Math.ceil((height + gap) / (rowHeight + gap));
-    item.style.gridRowEnd = `span ${span}`;
+  const getColumnCount = () => {
+    const width = grid.getBoundingClientRect().width || window.innerWidth;
+    if (width < 680) return 1;
+    if (width < 1040) return 2;
+    return 3;
   };
 
-  const layoutGallery = () => {
-    grid.querySelectorAll('.gallery-item').forEach(layoutItem);
+  const getGalleryGap = () => {
+    const styles = getComputedStyle(grid);
+    return parseFloat(styles.columnGap || styles.gap) || 20;
+  };
+
+  const getAspectRatio = (item) => (
+    Number.isFinite(Number(item.aspectRatio)) && Number(item.aspectRatio) > 0
+      ? Number(item.aspectRatio)
+      : 4 / 3
+  );
+
+  const updateAspectRatio = (item, image) => {
+    if (!image.naturalWidth || !image.naturalHeight) return;
+    const ratio = image.naturalWidth / image.naturalHeight;
+    if (Number.isFinite(ratio) && Math.abs((item.aspectRatio || 0) - ratio) > 0.01) {
+      item.aspectRatio = ratio;
+      scheduleRender();
+    }
+  };
+
+  const scheduleRender = () => {
+    cancelAnimationFrame(renderFrame);
+    renderFrame = requestAnimationFrame(renderGallery);
   };
 
   const openLightbox = (index) => {
@@ -49,11 +84,13 @@
     if (!item) return;
     activeIndex = index;
     lightboxImage.src = item.image;
-    lightboxImage.alt = item.title || '';
-    lightboxTitle.textContent = item.title || 'Untitled';
-    lightboxMeta.textContent = [item.type, item.date].filter(Boolean).join(' · ');
+    lightboxImage.alt = item.title || item.location || item.type || '';
+    lightboxTitle.textContent = item.title || '';
+    lightboxTitle.hidden = !item.title;
     lightboxLocation.textContent = item.location || '';
     lightboxLocation.hidden = !item.location;
+    lightboxMeta.textContent = item.date || '';
+    lightboxMeta.hidden = !item.date;
     lightboxCaption.textContent = item.caption || '';
     lightboxCaption.hidden = !item.caption;
     lightbox.setAttribute('aria-hidden', 'false');
@@ -77,20 +114,22 @@
     const button = document.createElement('button');
     button.className = `gallery-item${item.featured ? ' is-featured' : ''}`;
     button.type = 'button';
-    button.setAttribute('aria-label', `Open ${item.title || 'gallery image'}`);
+    button.setAttribute('aria-label', `Open ${item.title || item.location || 'gallery image'}`);
 
     const image = document.createElement('img');
+    image.addEventListener('load', () => updateAspectRatio(item, image), { once: true });
     image.src = item.image;
-    image.alt = item.title || '';
+    image.alt = item.title || item.location || '';
     image.loading = 'lazy';
     image.decoding = 'async';
-    image.addEventListener('load', () => layoutItem(button), { once: true });
 
-    const overlay = document.createElement('span');
-    overlay.className = 'gallery-item-title';
-    overlay.textContent = item.title || 'Untitled';
-
-    button.append(image, overlay);
+    button.append(image);
+    if (item.title) {
+      const overlay = document.createElement('span');
+      overlay.className = 'gallery-item-title';
+      overlay.textContent = item.title;
+      button.append(overlay);
+    }
     button.addEventListener('click', () => openLightbox(index));
     return button;
   };
@@ -99,15 +138,28 @@
     visibleItems = byOrder.filter((item) => activeFilter === 'All' || item.type === activeFilter);
     grid.textContent = '';
     grid.classList.add('is-filtering');
+    const columnCount = getColumnCount();
+    grid.style.setProperty('--gallery-columns', columnCount);
+    const gap = getGalleryGap();
+    const columnWidth = (grid.getBoundingClientRect().width - (gap * (columnCount - 1))) / columnCount;
+    const columns = Array.from({ length: columnCount }, () => {
+      const column = document.createElement('div');
+      column.className = 'gallery-column';
+      grid.append(column);
+      return { element: column, height: 0 };
+    });
 
     visibleItems.forEach((item, index) => {
-      grid.append(createGalleryItem(item, index));
+      const shortestColumn = columns.reduce((shortest, column) => (
+        column.height < shortest.height ? column : shortest
+      ));
+      shortestColumn.element.append(createGalleryItem(item, index));
+      shortestColumn.height += (columnWidth / getAspectRatio(item)) + gap;
     });
 
     if (empty) empty.hidden = visibleItems.length > 0;
 
     requestAnimationFrame(() => {
-      layoutGallery();
       grid.classList.remove('is-filtering');
     });
   };
@@ -136,7 +188,7 @@
     if (event.key === 'ArrowLeft') moveLightbox(-1);
     if (event.key === 'ArrowRight') moveLightbox(1);
   });
-  window.addEventListener('resize', layoutGallery);
+  window.addEventListener('resize', scheduleRender);
 
   renderGallery();
 })();

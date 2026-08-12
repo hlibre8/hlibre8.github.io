@@ -39,21 +39,11 @@ Then visit `http://localhost:8000`.
 ## Glass gallery workflow
 
 1. Put a new image in `assets/images/gallery/`.
-2. Add its `image`, `title`, `date`, `type`, and optional manual `location` to `assets/js/gallery-data.js`.
-3. Run the analyzer:
+2. Add an entry to `assets/js/gallery-data.js`.
+3. Commit and push.
 
-```bash
-python3 -m pip install Pillow numpy
-python3 scripts/analyze-gallery.py
-```
-
-Or, if you prefer npm scripts:
-
-```bash
-npm run gallery
-```
-
-The analyzer uses Pillow and NumPy to calculate color metadata, then writes
-`assets/js/gallery-generated.js`, which the Glass page reads automatically.
+The Glass page reads `assets/js/gallery-data.js` directly, so new images appear
+as soon as that file is edited. Use `orderOverride` only when you want to nudge
+an image ahead of or behind the normal file order.
 
 The site uses no framework or build step, so it is easy to edit and publish. It can be migrated to Astro later if the content becomes more complex.
