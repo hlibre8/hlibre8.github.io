@@ -36,4 +36,24 @@ Then visit `http://localhost:8000`.
 - `assets/images/hero-lab.jpg` — homepage image
 - `assets/images/profile-lab.jpg` — temporary profile crop
 
+## Glass gallery workflow
+
+1. Put a new image in `assets/images/gallery/`.
+2. Add its `image`, `title`, `date`, `type`, and optional manual `location` to `assets/js/gallery-data.js`.
+3. Run the analyzer:
+
+```bash
+python3 -m pip install Pillow numpy
+python3 scripts/analyze-gallery.py
+```
+
+Or, if you prefer npm scripts:
+
+```bash
+npm run gallery
+```
+
+The analyzer uses Pillow and NumPy to calculate color metadata, then writes
+`assets/js/gallery-generated.js`, which the Glass page reads automatically.
+
 The site uses no framework or build step, so it is easy to edit and publish. It can be migrated to Astro later if the content becomes more complex.

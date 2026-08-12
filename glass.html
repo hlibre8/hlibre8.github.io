@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="assets/css/styles.css">
   <script>document.documentElement.classList.add('has-js');</script>
   <script defer src="assets/js/site.js"></script>
+  <script defer src="assets/js/gallery-generated.js"></script>
+  <script defer src="assets/js/gallery.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -32,26 +34,40 @@
       <div class="page-masthead-content">
         <p class="eyebrow">Glass + Creative Work</p>
         <h1>Heat, movement, light, and transformation.</h1>
-        <p>This page will become an image-first gallery for glassblowing, photography, and other creative work.</p>
       </div>
     </section>
 
-    <section class="page-body">
-      <div class="content-shell">
-        <div class="page-lead">
-          <h2>Gallery framework</h2>
-          <p>The placeholders below show the intended layout. We will replace them with your strongest images and short captions, keeping the page cleaner and more visual than the academic sections.</p>
+    <section class="page-body glass-gallery-section">
+      <div class="content-shell glass-gallery-shell">
+        <div class="gallery-topline">
+          <h2>Gallery</h2>
+          <div class="gallery-filters" aria-label="Gallery filters">
+            <button class="gallery-filter is-active" type="button" data-gallery-filter="All" aria-pressed="true">All</button>
+            <button class="gallery-filter" type="button" data-gallery-filter="Glass" aria-pressed="false">Glass</button>
+            <button class="gallery-filter" type="button" data-gallery-filter="Photography" aria-pressed="false">Photography</button>
+          </div>
         </div>
-        <div class="gallery-grid">
-          <div class="gallery-placeholder"><span>Add glass image 01</span></div>
-          <div class="gallery-placeholder"><span>Add glass image 02</span></div>
-          <div class="gallery-placeholder"><span>Add process image</span></div>
-          <div class="gallery-placeholder"><span>Add photography image</span></div>
-        </div>
+        <div class="masonry-gallery" data-gallery-grid aria-live="polite"></div>
+        <p class="gallery-empty" data-gallery-empty hidden>Add images to <code>assets/images/gallery/</code>, update <code>assets/js/gallery-data.js</code>, then run <code>python3 scripts/analyze-gallery.py</code>.</p>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer"><div class="footer-shell"><span>© <span data-current-year></span> Hossein Libre</span><a href="index.html">Back to home</a></div></footer>
+  <div class="gallery-lightbox" data-gallery-lightbox aria-hidden="true" role="dialog" aria-modal="true" aria-label="Gallery image viewer">
+    <button class="lightbox-close" type="button" data-lightbox-close aria-label="Close gallery viewer">×</button>
+    <button class="lightbox-nav lightbox-prev" type="button" data-lightbox-prev aria-label="Previous image">‹</button>
+    <figure class="lightbox-figure">
+      <img data-lightbox-image alt="">
+      <figcaption>
+        <h2 data-lightbox-title></h2>
+        <p data-lightbox-meta></p>
+        <p class="lightbox-location" data-lightbox-location hidden></p>
+        <p data-lightbox-caption hidden></p>
+      </figcaption>
+    </figure>
+    <button class="lightbox-nav lightbox-next" type="button" data-lightbox-next aria-label="Next image">›</button>
+  </div>
+
+  <footer class="site-footer"><div class="footer-shell"><span>© <span data-current-year></span> Hossein Libre</span></div></footer>
 </body>
 </html>

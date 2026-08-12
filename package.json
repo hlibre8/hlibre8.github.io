@@ -1,0 +1,5 @@
+{
+  "scripts": {
+    "gallery": "python3 scripts/analyze-gallery.py"
+  }
+}
